@@ -7,11 +7,11 @@
 set -x
 
 module load python3
-export PYTHONPATH=/ccc/cont003/home/unipoiti/frapperg/scratch/tnovoa/TcESTIME
-export CRITIC_HOME=/ccc/cont003/home/unipoiti/frapperg/scratch/tnovoa/critic2
+export PYTHONPATH=~/scratch/tnovoa/TcESTIME
+export CRITIC_HOME=~/scratch/tnovoa/critic2
 name="H3S.ELF"
 hdos=0.48732
-this_dir="/ccc/cont003/home/unipoiti/frapperg/scratch/tnovoa/TcESTIME/example"
+this_dir="~/scratch/tnovoa/TcESTIME/example"
 
 
 #------ Tc ---------
