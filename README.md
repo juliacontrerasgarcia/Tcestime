@@ -1,12 +1,7 @@
-# ---------------------------------------------------------------- #
-# ---------------------------------------------------------------- #
-# --------------------------- TcESTIME --------------------------- #
-# ---------------------------------------------------------------- #
-# ---------------------------------------------------------------- #
-# Please cite us: xxxxx
-# ---------------------------------------------------------------- #
-# Tcestime works under a GNU license
-# ---------------------------------------------------------------- #
+
+# TcESTIME
+Please cite us: xxxxx
+Tcestime works under a GNU license
 
 Software to estimate the critical temperature of a superconductor
 through the determination of its networking value.
@@ -19,9 +14,7 @@ We welcome questions, comments and any kind of feedback, which is
 needed for the improvement of TcESTIME. Please direct them to 
 trinidad.novoa_aguirre@sorbonne-universite.fr.
 
-# -------------- #
-#  Dependencies  #
-# -------------- #
+#  Dependencies 
 
 TcESTIME is written in Python3, and needs the following packages to
 function:
@@ -31,9 +24,8 @@ function:
 * pandas
 
 
-# -------------- #
-#  Run TcESTIME  #
-# -------------- #
+
+#  Run TcESTIME  
 
 Before running TcESTIME, make sure that to set the PYTHONPATH to the folder containing the TcESTIME.py file.
 
