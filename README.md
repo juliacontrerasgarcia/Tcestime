@@ -6,7 +6,7 @@ Tcestime works under a GNU license
 Software to estimate the critical temperature of a superconductor
 through the determination of its networking value.
 
-Developped by Trinidad Novoa, J. Contreras-García and Yvon Maday.
+Developed by Trinidad Novoa, J. Contreras-García and Yvon Maday.
 
 For more information see: https://doi.org/10.1038/s41467-021-25687-0
 
