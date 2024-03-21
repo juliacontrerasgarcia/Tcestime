@@ -24,7 +24,6 @@ import argparse
 from src.netval import *
 from src.messages import *
 from src.get_dependencies import get_dependencies
-#from src.visualizer import visualizer
 from src.write_input import *
 from src.get_tc import *
 
@@ -47,8 +46,8 @@ plot = args.plot
 
 
 
-verbose = False #True
-connect_core_nnas = True
+verbose = False #True      # True is for debugging
+connect_core_nnas = True   # always keep this True
 
 fname = sys.argv[1]
 if outdir is None:
@@ -61,6 +60,8 @@ else:
     application_path = os.path.dirname(os.path.abspath(__file__))
 
     
+
+# Here we do a different preprocess if input is cube or critic2 output directly
 if data_file.split(".")[-1] == "cube":
     # Check if critic2 is installed and, if not, install it
     get_dependencies()
@@ -88,8 +89,10 @@ elif data_file.split(".")[-1] == "out":
 
     fnames_in = []
     fnames_out = [fname_out]
-    #run_visualizer = False
 
+
+
+# Here we compute the networking value
 for fn_out in fnames_out:
     fn_common = os.path.splitext(fn_out)[0]
     
@@ -105,6 +108,8 @@ for fn_out in fnames_out:
         else:
             net_vals.append(net_val)
 
+
+# Now it is time to get the HDOS
 if len(fnames_in)<=1:
     if h_dos is not None and net_val is not None:
         print_tc(net_val, h_frac, h_dos)
@@ -134,17 +139,6 @@ else:
 
 
 run_visualizer=False
-#if run_visualizer:
-    # Run the visualizer
-    #print("Running visulizer...          ", end="", flush=True)
-    #if net_val is not None:
-        #visualizer(fname_out, fname_cube, net_val)
-        #os.system("python3 " + os.path.dirname(os.path.realpath(__file__)) + "/visualizer.py " + " " + fname_out + " " + fname_cube + " " + str(net_val))
-    #else:
-        #visualizer(fname_out, fname_cube, 0.1)
-        #os.system("python3 " + os.path.dirname(os.path.realpath(__file__)) + "/visualizer.py "+  " " + fname_out + " " + fname_cube + " 0.1") 
-
-    #print("done")
 
 
 print("Time: {:.2f} s".format(time.time()-time0))
