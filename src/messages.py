@@ -26,5 +26,5 @@ def print_netval(net_val):
 def print_hdos(h_dos):
     print("H_DOS: {}".format(h_dos))
 
-def print_hf(h_f):
+def print_hf(h_frac):
     print("H_f: {}".format(h_frac))
