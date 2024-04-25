@@ -19,7 +19,7 @@ def print_no_netval():
     #print("If you have further questions about this issue, please contact trinidad.novoa_aguirre@upmc.fr.")
 
 def print_netval(net_val):
-    print("")
+    #print("")
     print("Networking value: {}".format(net_val))
     #print("** Be careful, if there is molecular Hydrogen in your system, this value might be underestimated.")
      
