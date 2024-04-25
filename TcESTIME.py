@@ -26,13 +26,15 @@ from src.messages import *
 from src.get_dependencies import get_dependencies
 from src.write_input import *
 from src.get_tc import *
-
+from src.hdos import *
 
 time0 = time.time()
 
 parser = argparse.ArgumentParser(description='Get the critical temperature of given system.')
 data_file_parse = parser.add_argument('fname', type=str, help='File containing the data (either .cube or .out).')
-h_dos_parse = parser.add_argument('--hdos', type=float, help='H_DOS fraction value to be considered for T_c.')
+h_dos_parse = parser.add_argument('--hdos', type=float, help='H_DOS value to be considered for T_c.')
+pdos_dir_parse = parser.add_argument('--dpdos', type=str, help='Directory where to find pdos files to get H_DOS (*.pdos_*). Working dir is default.')
+efermi_parse = parser.add_argument('--efermi', type=float, help='Fermi energy')
 outdir_parse = parser.add_argument('--odir', type=str, help='Directory for output files.')
 critic_parse = parser.add_argument('--critic2', type=str, help='Path to critic executable.')
 plot_parse = parser.add_argument('--plot', type=bool, help='Plot network of critical points. Default is False.')
@@ -40,11 +42,13 @@ args = parser.parse_args()
 
 data_file = args.fname
 h_dos = args.hdos
+pdos_dir = args.dpdos
+e_fermi = args.efermi
 outdir = args.odir
 critic2_path = args.critic2
 plot = args.plot
 
-
+work_dir = os.getcwd()
 
 verbose = False #True      # True is for debugging
 connect_core_nnas = True   # always keep this True
@@ -53,92 +57,46 @@ fname = sys.argv[1]
 if outdir is None:
     outdir = os.path.dirname(fname)
 
-
+# I need to figure out what this does
 if getattr(sys, 'frozen', False):
     application_path = sys._MEIPASS
 else:
     application_path = os.path.dirname(os.path.abspath(__file__))
 
-    
-
-# Here we do a different preprocess if input is cube or critic2 output directly
-if data_file.split(".")[-1] == "cube":
-    # Check if critic2 is installed and, if not, install it
-    get_dependencies()
-
-    # Write critic2 input files and run it
-    fname_cube = data_file    
-    fnames_in = []
-    fnames_out = []
-    fname_in, fname_out = write_input(fname_cube, outdir, cpeps=0.3, nucepsh=0.5)
-    fnames_in.append(fname_in)
-    fnames_out.append(fname_out)
-
-        
-    for fn_in, fn_out in zip(fnames_in, fnames_out):
-        print("Wrote critic2 input file : {}".format(fn_in))
-        print("Running critic2...          ", end="", flush=True)
-        run_critic(fn_in, fn_out, critic2=critic2_path)
-        print("done")
-        print("Wrote critic2 ouput file : {}".format(fn_out))
-        
-    #run_visualizer = True
-    
-elif data_file.split(".")[-1] == "out":
-    fname_out = data_file
-
-    fnames_in = []
-    fnames_out = [fname_out]
 
 
-
-# Here we compute the networking value
-for fn_out in fnames_out:
-    fn_common = os.path.splitext(fn_out)[0]
-    
-    net_val, h_frac =  netval(fn_out, verbose=verbose, connect_core_nnas=connect_core_nnas, plot=plot)
-    net_vals = []
-    
-    if net_val is not None:
-        print_netval(net_val)
-        
-    elif net_val is None:
-        if len(fnames_in)<=1:
-            print_no_netval()
-        else:
-            net_vals.append(net_val)
+# fn_out is the critic output file
+fn_out = data_file
+fn_common = os.path.splitext(fn_out)[0]
 
 
-# Now it is time to get the HDOS
-if len(fnames_in)<=1:
-    if h_dos is not None and net_val is not None:
-        print_tc(net_val, h_frac, h_dos)
-        write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos)
+# We begin by getting h_dos if it was not given
+if h_dos is not None:
+    print_hdos(h_dos)
+#elif pdos_dir is not None:
+elif e_fermi is not None:
+    if pdos_dir is not None:
+        h_dos = get_hdos(pdos_dir, e_fermi)
+        print_hdos(h_dos)
     else:
-        print("")
+        h_dos = get_hdos(work_dir, e_fermi)
+        print_hdos(h_dos)
 else:
-    if all([net is None for net in net_vals]):
-        print_no_netval()
-    else:
-        net_vals = np.array(net_vals)
-        net_vals = net_vals[np.where(net_vals is not None)[0]]
-        min_val = min(net_vals)
-        max_val = max(net_vals)
-        if max_val-min_val<=0.1:
-            print("")
-            print("Consistent networking value (+/- 0.1)")
-            print_netval(np.mean(net_vals))
-            if h_dos is not None and net_val is not None:
-                print_tc(net_val, h_frac, h_dos)
-                write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos)
-            else:
-                print("")
-        else:
-            print("The obtained networking values are not consistent")
-            print("Obtained values: {}".format(net_vals))
+    raise ValueError("Either the value of the Fermi energy or the value of H_DOS must be provided.")
 
 
-run_visualizer=False
+# We get the networking value and print it
+net_val, h_frac =  netval(fn_out, verbose=verbose, connect_core_nnas=connect_core_nnas, plot=plot)
+if net_val is not None:
+    print_netval(net_val)
+else:
+    print_no_netval()
+
+
+if h_dos is not None and net_val is not None:
+    print_tc(net_val, h_frac, h_dos)
+    write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos)
 
 
 print("Time: {:.2f} s".format(time.time()-time0))
+
