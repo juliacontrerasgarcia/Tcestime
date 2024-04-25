@@ -7,6 +7,8 @@ from numpy import absolute
 
 def get_hdos(dir_pdos, e_fermi, verbose=False):
     e_fermi = round(e_fermi,3)
+    if not os.path.isfile("{}/*.pdos_*".format(dir_pdos)):
+        raise ValueError("Files containing projected DOS do not exist in {}".format(dir_pdos))
     os.system("grep {} {}/*.pdos_* > pdos_fermi.out".format(e_fermi, dir_pdos))
     hdos = 0
     nh = 0
