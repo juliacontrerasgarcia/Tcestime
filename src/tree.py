@@ -35,13 +35,13 @@ def tree(nodes, edges, translations, at_nums, isoval, dim1, dim2, dim3, anti_phi
             network_with_H = True
             if anti_phi == 0.0:
                 anti_phi = isoval
-                print("Found molecularity index: ", anti_phi)
+                print("Molecularity index: ", anti_phi)
         elif len(idx_Hs) == 1 and len(conn_nodes)>1: 
             if count[conn_nodes[idx_Hs[0]]]>1:
                 network_with_H = True                
                 if anti_phi == 0.0:
                     anti_phi = isoval
-                    print("Found molecularity index: ", anti_phi)
+                    print("Molecularity index: ", anti_phi)
         
         translations = []
         for i2, node2 in enumerate(conn_nodes):
