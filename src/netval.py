@@ -15,7 +15,7 @@ def netval(fname, verbose=False, connect_core_nnas=True, plot=False):
 
     fn_dir = os.path.dirname(os.path.abspath(fname))
     fn_common = os.path.splitext(os.path.basename(fname))[0]
-    
+
     # This function gets all info from critic2 output file
     n_Hs, at_nums, ind_unique, translation, cp_type, position_crys, position_car, elf_val, conn_bcp, conn_bcp_trans, conn_rcp, conn_rcp_trans, crys2car = read_critic_out(fname)
     N = len(ind_unique)
@@ -69,14 +69,13 @@ def netval(fname, verbose=False, connect_core_nnas=True, plot=False):
     nuc_df = df_all[df_all["type"]=="nuc"]
     nna_df = df_all[df_all["type"]=="nna"]
 
-
     if connect_core_nnas:
         core_rad = core_radii()
         nna_core_dict = {}
-        for i_nuc, pos_nuc in nuc_df["position_car"].iteritems():
+        for i_nuc, pos_nuc in nuc_df["position_car"].items():
             nuc = nuc_df.loc[i_nuc]["ind_unique"]
             if int(nuc_df.loc[i_nuc]["at_nums"]) in core_rad.keys():
-                for i_nna, pos_nna in nna_df["position_car"].iteritems():
+                for i_nna, pos_nna in nna_df["position_car"].items():
                     nna = nna_df.loc[i_nna]["ind_unique"]
                     if np.linalg.norm(np.array(pos_nuc)-np.array(pos_nna)) < core_rad[int(nuc_df.loc[i_nuc]["at_nums"])]:
                         nna_core_dict[nna] = nuc
@@ -101,7 +100,7 @@ def netval(fname, verbose=False, connect_core_nnas=True, plot=False):
         edge_dict = {}
 
         nodes = set()
-        for ind_bcp, conn in bcp_df["connections"].iteritems():
+        for ind_bcp, conn in bcp_df["connections"].items():
             if len(conn) > 0:
                 edge = (bcp_df.loc[ind_bcp]["connections"][0], bcp_df.loc[ind_bcp]["connections"][1])
                 if connect_core_nnas:
@@ -124,7 +123,7 @@ def netval(fname, verbose=False, connect_core_nnas=True, plot=False):
         adj = adjacency(nodes, edge_dict, verbose=verbose)
         at_nums = []
         for n in nodes:
-            for i_node, node in df_all["ind_unique"].iteritems():
+            for i_node, node in df_all["ind_unique"].items():
                 if node==n:
                     at_nums.append(df_all.loc[i_node]["at_nums"])
                 if len(at_nums)==len(nodes):
