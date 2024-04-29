@@ -27,4 +27,4 @@ def print_hdos(h_dos):
     print("H_DOS: {:.3f}".format(h_dos))
 
 def print_hf(h_frac):
-    print("H_f: {}".format(h_frac))
+    print("H_f: {:.3f}".format(h_frac))
