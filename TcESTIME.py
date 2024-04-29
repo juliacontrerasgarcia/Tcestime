@@ -92,7 +92,7 @@ if net_val is not None:
 else:
     print_no_netval()
 
-
+print_hf(h_frac)
 if h_dos is not None and net_val is not None:
     print_tc(net_val, h_frac, h_dos)
     write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos)
