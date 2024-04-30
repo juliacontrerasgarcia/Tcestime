@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 
-#$esto es un test7
 #Tcestime provides a critical temperature estimation for hydrogen based superconductors.
 #Copyright (C) 2023, TRINIDAD NOVOA*, Yvon Maday and Julia Contreras-Garcia.
 #Please cite xxxx
