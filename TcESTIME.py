@@ -86,7 +86,7 @@ else:
 
 
 # We get the networking value and print it
-net_val, h_frac =  netval(fn_out, verbose=verbose, connect_core_nnas=connect_core_nnas, plot=plot)
+net_val, h_frac, anti_phi =  netval(fn_out, verbose=verbose, connect_core_nnas=connect_core_nnas, plot=plot)
 if net_val is not None:
     print_netval(net_val)
 else:
@@ -95,8 +95,8 @@ else:
 
 print_hf(h_frac)
 if h_dos is not None and net_val is not None:
-    print_tc(net_val, h_frac, h_dos)
-    write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos)
+    print_tc(net_val, h_frac, h_dos, molec=anti_phi)
+    write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos, molec=anti_phi)
 
 
 print("Time: {:.2f} s".format(time.time()-time0))
