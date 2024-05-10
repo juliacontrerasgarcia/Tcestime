@@ -90,7 +90,8 @@ net_val, h_frac =  netval(fn_out, verbose=verbose, connect_core_nnas=connect_cor
 if net_val is not None:
     print_netval(net_val)
 else:
-    print_no_netval()
+    #print_no_netval()
+    print_netval(0.0)
 
 print_hf(h_frac)
 if h_dos is not None and net_val is not None:
