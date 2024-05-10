@@ -5,13 +5,16 @@ from src.get_tc import get_tc
 
 def print_tc(net_val, h_frac, h_dos):
     t_c = get_tc(net_val, h_frac, h_dos)
-    if t_c >= 0:
+    print("Critical temperature: {:.2f}K +/- 65K".format(t_c))
+    print("")
+    
+    #if t_c >= 0:
         #print("Hydrogen fraction: {:.3f}".format(h_frac))
         #print("Given H_DOS: {}".format(h_dos))
-        print("Critical temperature: {:.2f}K +/- 65K".format(t_c))
-        print("")
-    else:
-        raise ValueError("Found temperature is negative, please check the H_DOS value given.")
+        #print("Critical temperature: {:.2f}K +/- 65K".format(t_c))
+        #print("")
+    #else:
+    #    raise ValueError("Found temperature is negative, please check the H_DOS value given.")
 
 def print_no_netval():
     print("")
