@@ -1,0 +1,10 @@
+Fermi energy : 15.826
+H_DOS: 0.489
+Molecularity index:  0.71
+Networking value: 0.71
+H_f: 0.750
+Fit for the estimation of Tc: SR2
+Tc^{SR2} = 442.3 * (1 - (phis - phi)) * h_f^3 * (h_dos)^(1/2)
+Critical temperature: 130.49K +/- 65K
+
+Time: 0.05 s
