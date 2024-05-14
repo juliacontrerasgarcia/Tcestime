@@ -135,11 +135,11 @@ def netval(fname, verbose=False, connect_core_nnas=True, plot=False):
             if plot:
                 os.system("mkdir "+fn_dir+"/Figures")
                 plot_uc(nodes, adj, df_all, fn_dir+"/Figures/"+fn_common+"-"+str(isoval)+".png")
-            return netval, h_frac
+            return netval, h_frac, anti_phi
 
     
         if plot:
             os.system("mkdir "+fn_dir+"/Figures")
             plot_uc(nodes, adj, df_all, fn_dir+"/Figures/"+fn_common+"-"+str(isoval)+".png")
     #print("Networking value: {}, Time: {}".format(netval, time.time()-time0))
-    return None, h_frac
+    return None, h_frac, anti_phi

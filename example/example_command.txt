@@ -1,1 +1,1 @@
-python3 /path/Tcestime/TcESTIME.py --efermi 15.8264 H3S.critic.out > tcestime.out
+python3 /path/Tcestime/TcESTIME.py --efermi 15.8264 H3S.critic.out --fit SR2 > SR2.out

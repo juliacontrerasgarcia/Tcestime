@@ -1,0 +1,10 @@
+Fermi energy : 15.826
+H_DOS: 0.489
+Molecularity index:  0.71
+Networking value: 0.71
+H_f: 0.750
+Fit for the estimation of Tc: SR4
+Tc^{SR4} = 574.7 * phi * ( h_dos * h_f^3 )^(1/2)
+Critical temperature: 185.33K +/- 65K
+
+Time: 0.06 s
