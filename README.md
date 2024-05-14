@@ -45,13 +45,14 @@ If HDOS is not specified, it can be computed by TcESTIME using the output of a Q
 If ODIR is not specified, all the output files are saved in the same directory as the input file. As for now, we recommend using absolute paths. 
 
 Possible fits for the estimation of Tc are:
-'leastsq' : Linear fit between Tc and phi_dos = phi * h_f * (h_dos)^(1/3) obtained using least squares method.
+
+* 'leastsq' : Linear fit between Tc and phi_dos = phi * h_f * (h_dos)^(1/3) obtained using least squares method.
 Tc^{leastsq} = 429.3 * phi * h_f * (h_dos)^(1/3) - 10.4
 
-'SR2' : Symbolic regression fit (see https://doi.org/10.48550/arXiv.2403.07584, here phis is molecularity index)
+* 'SR2' : Symbolic regression fit (see https://doi.org/10.48550/arXiv.2403.07584, here phis is molecularity index)
 Tc^{SR2} = 442.3 * (1 - (phis - phi)) * h_f^3 * (h_dos)^(1/2)
 
-'SR4' : Symbolic regression fit (see https://doi.org/10.48550/arXiv.2403.07584)
+* 'SR4' : Symbolic regression fit (see https://doi.org/10.48550/arXiv.2403.07584)
 Tc^{SR4} = 574.7 * phi * ( h_dos * h_f^3 )^(1/2)
 
 
