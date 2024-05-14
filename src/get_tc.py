@@ -3,12 +3,12 @@
 import numpy as np
 
 
-def get_tc(net_val, h_frac, h_dos, molec=None, fit='meansq'):
+def get_tc(net_val, h_frac, h_dos, molec=None, fit='leastsq'):
     phi_dos = net_val * h_frac * (h_dos**(1/3))
     #t_c = 750.0 * phi_dos - 85
-    if fit == 'meansq':
+    if fit == 'leastsq':
         t_c = 429.3 * phi_dos - 10.4
-        eq_tc = "Tc^{meansq} = 429.3 * phi * h_f * (h_dos)^(1/3) - 10.4"
+        eq_tc = "Tc^{leastsq} = 429.3 * phi * h_f * (h_dos)^(1/3) - 10.4"
     elif fit == 'SR2':
         t_c = 442.3 * (1- (molec-net_val)) * (h_frac**3) * (h_dos**(1./2))
         eq_tc = "Tc^{SR2} = 442.3 * (1 - (phis - phi)) * h_f^3 * (h_dos)^(1/2)"
@@ -19,7 +19,7 @@ def get_tc(net_val, h_frac, h_dos, molec=None, fit='meansq'):
     return t_c, eq_tc
 
 
-def write_tc(file_tc, net_val, h_frac, h_dos, molec=None, fit='meansq'):
+def write_tc(file_tc, net_val, h_frac, h_dos, molec=None, fit='leastsq'):
     tc, eq_tc = get_tc(net_val, h_frac, h_dos, molec, fit)
     with open(file_tc, "w") as f:
         f.write("{:.2f} \n".format(tc))
