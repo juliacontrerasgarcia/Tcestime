@@ -3,8 +3,10 @@
 import numpy as np
 from src.get_tc import get_tc
 
-def print_tc(net_val, h_frac, h_dos):
-    t_c = get_tc(net_val, h_frac, h_dos)
+def print_tc(net_val, h_frac, h_dos, molec=None, fit='meansq'):
+    t_c, eq_tc = get_tc(net_val, h_frac, h_dos, molec, fit)
+    print("Fit for the estimation of Tc: {}".format(fit))
+    print(eq_tc)
     print("Critical temperature: {:.2f}K +/- 65K".format(t_c))
     print("")
     
@@ -25,9 +27,13 @@ def print_netval(net_val):
     #print("")
     print("Networking value: {}".format(net_val))
     #print("** Be careful, if there is molecular Hydrogen in your system, this value might be underestimated.")
+
+def print_molec(molec):
+    print("Molecularity index: {}".format(molec))
      
 def print_hdos(h_dos):
     print("H_DOS: {:.3f}".format(h_dos))
 
 def print_hf(h_frac):
     print("H_f: {:.3f}".format(h_frac))
+
