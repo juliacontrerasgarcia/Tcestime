@@ -35,7 +35,7 @@ The different command line options are:
   --dpdos DPDOS      Directory where to find pdos files to get H_DOS (\*.pdos\*). Working dir is
                      default.
   --efermi EFERMI    Fermi energy
-  --fit FIT          Fit to estimate Tc ('meansq', 'SR2', or 'SR4'). Default is 'meansq'.
+  --fit FIT          Fit to estimate Tc ('leastsq', 'SR2', or 'SR4'). Default is 'leastsq'.
   --odir ODIR        Directory for output files.
   --critic2 CRITIC2  Path to critic executable.
   --plot PLOT        Plot network of critical points. Default is False.
@@ -43,6 +43,17 @@ The different command line options are:
 
 If HDOS is not specified, it can be computed by TcESTIME using the output of a QE calculation. For this, EFERMI must be specified, and the \*.pdos.\* files must be located in the DPDOS directory (that defaults to the working directory). 
 If ODIR is not specified, all the output files are saved in the same directory as the input file. As for now, we recommend using absolute paths. 
+
+Possible fits for the estimation of Tc are:
+'leastsq' : Linear fit between Tc and phi_dos = phi * h_f * (h_dos)^(1/3) obtained using least squares method.
+Tc^{leastsq} = 429.3 * phi * h_f * (h_dos)^(1/3) - 10.4
+
+'SR2' : Symbolic regression fit (see https://doi.org/10.48550/arXiv.2403.07584, here phis is molecularity index)
+Tc^{SR2} = 442.3 * (1 - (phis - phi)) * h_f^3 * (h_dos)^(1/2)
+
+'SR4' : Symbolic regression fit (see https://doi.org/10.48550/arXiv.2403.07584)
+Tc^{SR4} = 574.7 * phi * ( h_dos * h_f^3 )^(1/2)
+
 
 It is also possible to provide a cube file of the ELF, and run critic2 directly within TcESTIME. In this case, critic2 must be already installed in the system. The calculations will be performed using the optimized parameters CPEPS 0.3 and NUCEPSH 0.6. TcESTIME recognizes the cube input file by its extension. Then, the program is launched by
 
