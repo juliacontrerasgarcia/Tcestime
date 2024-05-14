@@ -3,7 +3,7 @@
 import numpy as np
 from src.get_tc import get_tc
 
-def print_tc(net_val, h_frac, h_dos, molec=None, fit='meansq'):
+def print_tc(net_val, h_frac, h_dos, molec=None, fit='leastsq'):
     t_c, eq_tc = get_tc(net_val, h_frac, h_dos, molec, fit)
     print("Fit for the estimation of Tc: {}".format(fit))
     print(eq_tc)
