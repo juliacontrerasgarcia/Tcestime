@@ -35,6 +35,7 @@ data_file_parse = parser.add_argument('fname', type=str, help='File containing t
 h_dos_parse = parser.add_argument('--hdos', type=float, help='H_DOS value to be considered for T_c.')
 pdos_dir_parse = parser.add_argument('--dpdos', type=str, help='Directory where to find pdos files to get H_DOS (*.pdos_*). Working dir is default.')
 efermi_parse = parser.add_argument('--efermi', type=float, help='Fermi energy')
+fit_parse = parser.add_argument('--fit', type=str, help="Fit to estimate Tc ('leastsq', 'SR2', or 'SR4'). Default is 'leastsq'.")
 outdir_parse = parser.add_argument('--odir', type=str, help='Directory for output files.')
 critic_parse = parser.add_argument('--critic2', type=str, help='Path to critic executable.')
 plot_parse = parser.add_argument('--plot', type=bool, help='Plot network of critical points. Default is False.')
@@ -44,6 +45,7 @@ data_file = args.fname
 h_dos = args.hdos
 pdos_dir = args.dpdos
 e_fermi = args.efermi
+fit = args.fit
 outdir = args.odir
 critic2_path = args.critic2
 plot = args.plot
@@ -63,7 +65,9 @@ if getattr(sys, 'frozen', False):
 else:
     application_path = os.path.dirname(os.path.abspath(__file__))
 
-
+# Set default fit to least squares
+if fit is None:
+    fit = 'leastsq'
 
 # fn_out is the critic output file
 fn_out = data_file
@@ -95,8 +99,8 @@ else:
 
 print_hf(h_frac)
 if h_dos is not None and net_val is not None:
-    print_tc(net_val, h_frac, h_dos, molec=anti_phi)
-    write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos, molec=anti_phi)
+    print_tc(net_val, h_frac, h_dos, molec=anti_phi, fit=fit)
+    write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos, molec=anti_phi, fit=fit)
 
 
 print("Time: {:.2f} s".format(time.time()-time0))
