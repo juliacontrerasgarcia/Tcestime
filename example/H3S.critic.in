@@ -1,0 +1,3 @@
+crystal H3S.ELF.cube
+load H3S.ELF.cube
+AUTO CPEPS 0.3 NUCEPSH 0.6
