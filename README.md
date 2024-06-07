@@ -19,6 +19,7 @@ TcESTIME is written in Python3, and needs the following packages to function:
 * numpy
 * matplotlib
 * pandas
+* pickle
 
 
 #  Run TcESTIME  
@@ -35,7 +36,7 @@ The different command line options are:
   --dpdos DPDOS      Directory where to find pdos files to get H_DOS (\*.pdos\*). Working dir is
                      default.
   --efermi EFERMI    Fermi energy
-  --fit FIT          Fit to estimate Tc ('leastsq', 'SR2', or 'SR4'). Default is 'leastsq'.
+  --fit FIT          Fit to estimate Tc ('leastsq', 'SR2', 'SR4', or 'GBR'). Default is 'leastsq'.
   --odir ODIR        Directory for output files.
   --critic2 CRITIC2  Path to critic executable.
   --plot PLOT        Plot network of critical points. Default is False.
@@ -55,9 +56,9 @@ Tc^{SR2} = 442.3 * (1 - (phis - phi)) * h_f^3 * (h_dos)^(1/2)
 * 'SR4' : Symbolic regression fit (see https://doi.org/10.48550/arXiv.2403.07584)
 Tc^{SR4} = 574.7 * phi * ( h_dos * h_f^3 )^(1/2)
 
+* 'GBR' : Gradient Boosting regression fit (see xxxxxxxx)
 
-It is also possible to provide a cube file of the ELF, and run critic2 directly within TcESTIME. In this case, critic2 must be already installed in the system. The calculations will be performed using the optimized parameters CPEPS 0.3 and NUCEPSH 0.6. TcESTIME recognizes the cube input file by its extension. Then, the program is launched by
 
-python3 TcESTIME.py /ex-dir/ex1.cube --opt OPT
+For the calculation of the critical points of the ELF using critic2, we recommend using the optimized parameters CPEPS 0.3 and NUCEPSH 0.6.
 
 The output of TcESTIME is a standard output message containing the found networking value, molecularity index, H_DOS, H_f, and the critical temperature.
