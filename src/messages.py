@@ -7,7 +7,7 @@ def print_tc(net_val, h_frac, h_dos, molec=None, fit='leastsq'):
     t_c, eq_tc = get_tc(net_val, h_frac, h_dos, molec, fit)
     print("Fit for the estimation of Tc: {}".format(fit))
     print(eq_tc)
-    print("Critical temperature: {:.2f}K +/- 65K".format(t_c))
+    print("Critical temperature: {:.2f}K".format(t_c))
     print("")
     
     #if t_c >= 0:
