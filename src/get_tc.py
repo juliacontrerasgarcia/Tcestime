@@ -5,10 +5,9 @@ import numpy as np
 
 def get_tc(net_val, h_frac, h_dos, molec=None, fit='leastsq'):
     phi_dos = net_val * h_frac * (h_dos**(1/3))
-    #t_c = 750.0 * phi_dos - 85
     if fit == 'leastsq':
-        t_c = 429.3 * phi_dos - 10.4
-        eq_tc = "Tc^{leastsq} = 429.3 * phi * h_f * (h_dos)^(1/3) - 10.4"
+        t_c = 456.34 * phi_dos - 9.46
+        eq_tc = "Tc^{leastsq} = 456.34 * phi * h_f * (h_dos)^(1/3) - 9.46"
     elif fit == 'SR2':
         t_c = 442.3 * (1- (molec-net_val)) * (h_frac**3) * (h_dos**(1./2))
         eq_tc = "Tc^{SR2} = 442.3 * (1 - (phis - phi)) * h_f^3 * (h_dos)^(1/2)"
