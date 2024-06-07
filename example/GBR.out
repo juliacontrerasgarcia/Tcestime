@@ -1,0 +1,10 @@
+Fermi energy : 15.826
+H_DOS: 0.489
+Molecularity index:  0.71
+Networking value: 0.71
+H_f: 0.750
+Fit for the estimation of Tc: GBR
+Tc^{GBR} is computed using a Gradient Boosting Regression model
+Critical temperature: 222.75K
+
+Time: 0.60 s
