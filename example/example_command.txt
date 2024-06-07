@@ -1,1 +1,5 @@
-python3 /path/Tcestime/TcESTIME.py --efermi 15.8264 H3S.critic.out --fit SR2 > SR2.out
+If hdos value if well known:
+python3 /path/Tcestime/TcESTIME.py H3S.critic.out --hdos 0.489 --fit SR2 > SR2.out
+
+Otherwise:
+python3 /path/Tcestime/TcESTIME.py H3S.critic.out --efermi 15.8264 --dpdos /path/pdos --fit SR2 > SR2.out
