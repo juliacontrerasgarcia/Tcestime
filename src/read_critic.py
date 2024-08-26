@@ -10,25 +10,41 @@ def read_critic_out(fname):
                 version="stable"
             elif "(development)," in line:
                 version="development"
-            
-            #if version=="stable":
-            if "+ List of atomic charges and atomic numbers" in line:
-                line_atomic = i
-            if "+ Number of electrons" in line:
-                line_elect = i
-            if "* Critical point list, final report" in line:
-                line_neq_cps = i
-            elif "* Analysis of system bonds" in line:
-                line_analy = i
-            elif "B = crys to car" in line:
-                line_crys2car = i
-            elif "G = metric tensor" in line:
-                line_metric = i
-            elif "Complete CP list, bcp and rcp connectivity table" in line:
-                line_all_cps = i
-            elif "* Attractor connectivity matrix" in line:
-                line_attr_conn = i 
-            
+           
+            if version=="stable":
+                if "+ List of atomic charges and atomic numbers" in line:
+                    line_atomic = i
+                if "+ Number of electrons" in line:
+                    line_elect = i
+                if "* Critical point list, final report" in line:
+                    line_neq_cps = i
+                elif "* Analysis of system bonds" in line:
+                    line_analy = i
+                elif "B = crys to car" in line:
+                    line_crys2car = i
+                elif "G = metric tensor" in line:
+                    line_metric = i
+                elif "Complete CP list, bcp and rcp connectivity table" in line:
+                    line_all_cps = i
+                elif "* Attractor connectivity matrix" in line:
+                    line_attr_conn = i
+            elif version=="development":
+                if "+ List of atomic species:" in line:
+                    line_atomic = i
+                if "+ List of non-equivalent atoms in the unit cell (cryst. coords.): " in line:
+                    line_elect = i
+                if "* Critical point list, final report" in line:
+                    line_neq_cps = i
+                elif "* Analysis of system bonds" in line:
+                    line_analy = i
+                elif "B = crys to car" in line:
+                    line_crys2car = i
+                elif "G = metric tensor" in line:
+                    line_metric = i
+                elif "Complete CP list, bcp and rcp connectivity table" in line:
+                    line_all_cps = i
+                elif "* Attractor connectivity matrix" in line:
+                    line_attr_conn = i             
 
     neq_nuc = []
     neq_nna = []
@@ -50,8 +66,13 @@ def read_critic_out(fname):
     
     with open(fname, "r") as f:
         for i, line in enumerate(f):
-            if i < line_elect-1 and i > line_atomic + 1:
-                atom_dict[int(line.split()[0])] =  int(line.split()[2])
+            if version=="stable":
+                if i < line_elect-1 and i > line_atomic + 1:
+                    atom_dict[int(line.split()[0])] =  int(line.split()[2])
+            elif version=="development":
+                if i < line_elect + 8 and i > line_elect + 4:
+                    atom_dict[int(line.split()[0])] =  int(line.split()[-1])
+            
             if i < line_analy - 1 and i > line_neq_cps + 3 : 
                 if line.split()[3]=="nucleus":
                     neq_nuc.append(int(line.split()[0]))
@@ -67,8 +88,12 @@ def read_critic_out(fname):
                     elf_val_dict[line.split()[0]] = float(line.split()[10])                
                 elif line.split()[4]=="cage":
                     elf_val_dict[line.split()[0]] = float(line.split()[10])                
-            if i < line_metric and i > line_crys2car:
-                crys2car[i-line_crys2car-1,:] = np.array([float(el) for el in line.split()])
+            if version=="stable":
+                if i < line_metric and i > line_crys2car:
+                    crys2car[i-line_crys2car-1,:] = np.array([float(el) for el in line.split()])
+            elif version=="development":    
+                if i < line_crys2car+4 and i > line_crys2car:
+                    crys2car[i-line_crys2car-1,:] = np.array([float(el) for el in line.split()])
             if i < line_attr_conn - 1  and i > line_all_cps + 2:
                 ind_unique.append(int(line.split()[0]))
                 translation.append([0, 0, 0])
