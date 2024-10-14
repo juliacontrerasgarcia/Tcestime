@@ -33,6 +33,8 @@ def read_critic_out(fname):
                     line_atomic = i
                 if "+ List of non-equivalent atoms in the unit cell (cryst. coords.): " in line:
                     line_elect = i
+                if "+ List of atoms in the unit cell (cryst. coords.):" in line:
+                    line_at_uc = i
                 if "* Critical point list, final report" in line:
                     line_neq_cps = i
                 elif "* Analysis of system bonds" in line:
@@ -70,7 +72,7 @@ def read_critic_out(fname):
                 if i < line_elect-1 and i > line_atomic + 1:
                     atom_dict[int(line.split()[0])] =  int(line.split()[2])
             elif version=="development":
-                if i < line_elect + 8 and i > line_elect + 4:
+                if i < line_at_uc - 1 and i > line_elect + 4:
                     atom_dict[int(line.split()[0])] =  int(line.split()[-1])
             
             if i < line_analy - 1 and i > line_neq_cps + 3 : 
