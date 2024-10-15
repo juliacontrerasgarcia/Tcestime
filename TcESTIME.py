@@ -73,7 +73,6 @@ if os.path.splitext(data_file)[-1]==".cube":
     # If it is a cube file we run critic2
     fn_in = os.path.splitext(os.path.basename(data_file))[0]+".critic.in"
     fn_out = os.path.splitext(os.path.basename(data_file))[0]+".critic.out"
-    print(fn_in, fn_out)
     write_input(fn_in, data_file, cpeps=0.3, nucepsh=0.6)
     run_critic(fn_in, fn_out, critic2=critic2_path)    
 
