@@ -5,7 +5,7 @@ import os
 import subprocess as sp
 
 
-def write_input(fname_in, outdir=None, cpeps=None, nuceps=None, nucepsh=None):
+def write_input(fname_in, fname_cube, outdir=None, cpeps=None, nuceps=None, nucepsh=None):
     with open(fname_in, "w") as f_in:
         f_in.write("crystal "+fname_cube+"\n")
         f_in.write("load "+fname_cube+"\n")
