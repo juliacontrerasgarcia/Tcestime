@@ -26,4 +26,6 @@ def write_input(fname_in, fname_cube, outdir=None, cpeps=None, nuceps=None, nuce
 def run_critic(fname_in, fname_out, critic2=None):
     if critic2 == None:
         critic2 = sp.getoutput("which critic2")
+        if critic2=="":
+            raise.ValueError("The critic2 executable was not found.")
     os.system(critic2 + " " + fname_in + " | tee " + fname_out + " >/dev/null ")
