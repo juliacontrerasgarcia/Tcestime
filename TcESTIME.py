@@ -55,11 +55,10 @@ work_dir = os.getcwd()
 verbose = False #True      # True is for debugging
 connect_core_nnas = True   # always keep this True
 
-fname = sys.argv[1]
-if outdir is None:
-    outdir = os.path.dirname(fname)
 
-# I need to figure out what this does
+if outdir is None:
+    outdir = os.path.dirname(data_file) 
+
 if getattr(sys, 'frozen', False):
     application_path = sys._MEIPASS
 else:
@@ -69,9 +68,19 @@ else:
 if fit is None:
     fit = 'leastsq'
 
-# fn_out is the critic output file
-fn_out = data_file
-fn_common = os.path.splitext(fn_out)[0]
+# Check the type of input file
+if os.path.splitext(data_file)[-1]==".cube":
+    # If it is a cube file we run critic2
+    fn_in = os.path.splitext(os.path.basename(data_file))[0]+".critic.in"
+    fn_out = os.path.splitext(os.path.basename(data_file))[0]+".critic.out"
+    print(fn_in, fn_out)
+    write_input(fn_in, data_file, cpeps=0.3, nucepsh=0.6)
+    run_critic(fn_in, fn_out, critic2=critic2_path)    
+
+else:
+    # fn_out is the critic output file
+    fn_out = data_file
+
 
 
 # We begin by getting h_dos if it was not given
