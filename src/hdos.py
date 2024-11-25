@@ -14,7 +14,7 @@ def get_hdos(dir_pdos, e_fermi, verbose=False):
     else:
         raise ValueError("{}: directory does not exist.".format(dir_pdos))
 
-    os.system("grep {:.3f} {}/*.pdos_* > pdos_fermi.out".format(e_fermi, dir_pdos))
+    os.system("grep ' {:.3f}' {}/*.pdos_* > pdos_fermi.out".format(e_fermi, dir_pdos))
     hdos = 0
     nh = 0
     atmdos = 0
