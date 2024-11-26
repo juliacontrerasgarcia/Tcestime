@@ -20,6 +20,7 @@ TcESTIME is written in Python3, and needs the following packages to function:
 * matplotlib
 * pandas
 * pickle
+* scikit-learn==1.4.1 (other versions might fail for GBR method)
 
 
 #  Run TcESTIME  
