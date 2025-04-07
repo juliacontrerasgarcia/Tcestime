@@ -35,6 +35,7 @@ data_file_parse = parser.add_argument('fname', type=str, help='File containing t
 h_dos_parse = parser.add_argument('--hdos', type=float, help='H_DOS value to be considered for T_c.')
 pdos_dir_parse = parser.add_argument('--dpdos', type=str, help='Directory where to find pdos files to get H_DOS (*.pdos_*). Working dir is default.')
 efermi_parse = parser.add_argument('--efermi', type=float, help='Fermi energy')
+phi_parse = parser.add_argument('--phi', type=float, help='Fermi energy')
 fit_parse = parser.add_argument('--fit', type=str, help="Fit to estimate Tc ('leastsq', 'SR2', or 'SR4'). Default is 'leastsq'.")
 outdir_parse = parser.add_argument('--odir', type=str, help='Directory for output files.')
 critic_parse = parser.add_argument('--critic2', type=str, help='Path to critic executable.')
@@ -45,6 +46,7 @@ data_file = args.fname
 h_dos = args.hdos
 pdos_dir = args.dpdos
 e_fermi = args.efermi
+net_val = args.phi
 fit = args.fit
 outdir = args.odir
 critic2_path = args.critic2
@@ -52,8 +54,10 @@ plot = args.plot
 
 work_dir = os.getcwd()
 
-verbose = False #True      # True is for debugging
+verbose = False      # True is for debugging
 connect_core_nnas = True   # always keep this True
+
+
 
 
 if outdir is None:
@@ -98,7 +102,11 @@ else:
 
 
 # We get the networking value and print it
-net_val, h_frac, anti_phi =  netval(fn_out, verbose=verbose, connect_core_nnas=connect_core_nnas, plot=plot)
+if net_val is not None:
+    placeholder, h_frac, anti_phi = netval(fn_out, verbose=verbose, connect_core_nnas=connect_core_nnas, plot=plot)
+else:
+    net_val, h_frac, anti_phi =  netval(fn_out, verbose=verbose, connect_core_nnas=connect_core_nnas, plot=plot)
+
 if net_val is not None:
     print_netval(net_val)
 else:
