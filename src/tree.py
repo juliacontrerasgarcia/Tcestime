@@ -118,15 +118,15 @@ def tree(nodes, edges, translations, at_nums, isoval, dim1, dim2, dim3, anti_phi
                                         rank = np.linalg.matrix_rank(translations)
                                         if rank >= 1 and dim1 == False: # and network_with_H:
                                             dim1 = True
-                                            if verbose:
-                                                print("Found one-dimensional periodic network at isovalue ", isoval)
+                                            #if verbose:
+                                            print("Found one-dimensional periodic network at isovalue ", isoval)
                                         if rank >= 2 and dim2 == False: # and network_with_H:
                                             dim2 = True
-                                            if verbose:
-                                                print("Found two-dimensional periodic network at isovalue ", isoval)
+                                            #if verbose:
+                                            print("Found two-dimensional periodic network at isovalue ", isoval)
                                         if rank >= 3: # and network_with_H:
                                             if verbose:
-                                                print("Found three-dimensional periodic network at isovalue ", isoval)
+                                                #print("Found three-dimensional periodic network at isovalue ", isoval)
                                                 print("Total translations: ", translations)
                                             return translations, rank, dim1, dim2, dim3, anti_phi
                                             exit()
