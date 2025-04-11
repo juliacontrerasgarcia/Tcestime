@@ -1,6 +1,5 @@
 
 # TcESTIME
-Please cite us: xxxxx
 Tcestime works under a GNU license
 
 Software to estimate the critical temperature of a superconductor through the determination of its networking value.
