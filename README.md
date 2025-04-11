@@ -7,9 +7,9 @@ Software to estimate the critical temperature of a superconductor through the de
 Developed by Trinidad Novoa, J. Contreras-García and Yvon Maday.
 
 If you use TcESTIME, please cite:
-Novoa, T., di Mauro, M. E., Inostroza, D., El Haloui, K., Sisourat, N., Maday, Y., & Contreras-García, J. (2024). TcESTIME: predicting high-temperature hydrogen-based superconductors. Chemical Science.
+Novoa, T., di Mauro, M. E., Inostroza, D., El Haloui, K., Sisourat, N., Maday, Y., & Contreras-García, J. (2024). TcESTIME: predicting high-temperature hydrogen-based superconductors. Chemical Science, 2025, 16, 57-68.
 
-Belli, F., Novoa, T., Contreras-García, J., & Errea, I. (2021). Strong correlation between electronic bonding network and critical temperature in hydrogen-based superconductors. Nature communications, 12(1), 5381.
+Belli, F., Novoa, T., Contreras-García, J., & Errea, I. (2021). Strong correlation between electronic bonding network and critical temperature in hydrogen-based superconductors. Nature communications, 2021, 12, 5381.
 
 We welcome questions, comments and any kind of feedback, which is needed for the improvement of TcESTIME. Please direct them to trinidadantonia.novoa@ehu.eus.
 
@@ -61,7 +61,7 @@ Tc^{SR2} = 442.3 * (1 - (phis - phi)) * h_f^3 * (h_dos)^(1/2)
 * 'SR4' : Symbolic regression fit (see https://doi.org/10.48550/arXiv.2403.07584)
 Tc^{SR4} = 574.7 * phi * ( h_dos * h_f^3 )^(1/2)
 
-* 'GBR' : Gradient Boosting regression fit (see xxxxxxxx)
+* 'GBR' : Gradient Boosting regression fit (see https://doi.org/10.1039/D4SC04465G)
 
 
 For the calculation of the critical points of the ELF using critic2, we recommend using the optimized parameters CPEPS 0.3 and NUCEPSH 0.6.
