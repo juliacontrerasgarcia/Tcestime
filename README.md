@@ -37,13 +37,12 @@ The different command line options are:
 
   -h, --help         show this help message and exit\
   --hdos HDOS        H_DOS value to be considered for T_c.\
-  --dpdos DPDOS      Directory where to find pdos files to get H_DOS (\*.pdos\*). Working dir is\
-                     default.\
+  --dpdos DPDOS      Directory where to find pdos files to get H_DOS (\*.pdos\*). Working dir is default.\
   --efermi EFERMI    Fermi energy\
   --fit FIT          Fit to estimate Tc ('leastsq', 'SR2', 'SR4', or 'GBR'). Default is 'leastsq'.\
   --odir ODIR        Directory for output files.\
   --critic2 CRITIC2  Path to critic executable.\
-  --plot PLOT        Plot network of critical points. Default is False.\
+  --plot PLOT        Plot network of critical points. Default is False.
 
 
 If HDOS is not specified, it can be computed by TcESTIME using the output of a QE calculation. For this, EFERMI must be specified, and the \*.pdos.\* files must be located in the DPDOS directory (that defaults to the working directory). 
