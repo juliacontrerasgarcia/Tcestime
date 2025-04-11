@@ -29,7 +29,7 @@ TcESTIME is written in Python3, and needs the following packages to function:
 
 Before running TcESTIME, make sure to set the PYTHONPATH to the folder containing the TcESTIME.py file.
 
-TcESTIME estimates the networking value of a system from the ELF and DOS. The input consists of a critic2 output file (stable version), containing information about the ELF critical points (as obtained with QE or VASP). If said file is located in /ex-dir/ex1.critic.out, TcESTIME is launched by
+TcESTIME estimates the networking value of a system from the ELF and DOS. The input consists of a critic2 output file, containing information about the ELF critical points (as obtained with Quantum ESPRESSO, preferrably using PBE functional). If said file is located in /ex-dir/ex1.critic.out, TcESTIME is launched by
 
 python3 TcESTIME.py /ex-dir/ex1.critic.out --opt OPT
 
