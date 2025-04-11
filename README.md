@@ -12,7 +12,7 @@ Novoa, T., di Mauro, M. E., Inostroza, D., El Haloui, K., Sisourat, N., Maday, Y
 
 Belli, F., Novoa, T., Contreras-García, J., & Errea, I. (2021). Strong correlation between electronic bonding network and critical temperature in hydrogen-based superconductors. Nature communications, 12(1), 5381.
 
-We welcome questions, comments and any kind of feedback, which is needed for the improvement of TcESTIME. Please direct them to trinidad.novoa_aguirre@sorbonne-universite.fr.
+We welcome questions, comments and any kind of feedback, which is needed for the improvement of TcESTIME. Please direct them to trinidadantonia.novoa@ehu.eus.
 
 
 #  Dependencies 
