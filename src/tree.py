@@ -77,15 +77,18 @@ def tree(nodes, edges, translations, at_nums, isoval, dim1, dim2, dim3, anti_phi
                             # otherwise we must consider all possibilities
                             else:
                                 # Copy all path translations
-                                trans_path_new = trans_path[:]
+                                trans_path_new = []  #trans_path[:] # TEST!!!!
                                 for n_trans in edge_trans:
+                                    #print("N trans: ", n_trans)
                                     # For each new translation, we have a list of old trans + new trans
                                     n_trans_path = [[sum(x) for x in zip(tp, n_trans)] for tp in trans_path]
+                                    #print("N trans path: ", n_trans_path)
                                     # Add them to final list of trans only if it is not already in it
                                     for ntp in n_trans_path:
                                         if ntp not in trans_path_new:
                                             trans_path_new.append(ntp)
-                                    trans_path = trans_path_new[:] # Replace old path trans list with new one
+                                trans_path = trans_path_new[:] # Replace old path trans list with new one. It used to be more nested, must test!!!
+                                #print("Trans path: ", trans_path)
 
                             # Stop when we reach edge in question
                             if edge[-1] == node2:
