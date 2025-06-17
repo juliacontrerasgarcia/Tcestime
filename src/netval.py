@@ -128,7 +128,8 @@ def netval(fname, verbose=False, connect_core_nnas=True, plot=False):
                     at_nums.append(df_all.loc[i_node]["at_nums"])
                 if len(at_nums)==len(nodes):
                     break
-        translations, rank, dim1, dim2, dim3, anti_phi = tree(nodes, edge_dict, translations, at_nums, isoval, dim1, dim2, dim3, anti_phi, verbose=verbose)
+        #translations, rank, dim1, dim2, dim3, anti_phi = tree(nodes, edge_dict, translations, at_nums, isoval, dim1, dim2, dim3, anti_phi, verbose=verbose)
+        translations, rank, phi1, phi2, phi3, anti_phi = tree(nodes, edge_dict, translations, at_nums, isoval, dim1, dim2, dim3, anti_phi, verbose=verbose)
         #plot_uc(nodes, adj, df_all, fn_dir+"/Figures/"+fn_common+"-"+str(isoval)+".png")
         if rank >=3:
             netval=isoval
