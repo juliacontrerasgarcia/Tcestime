@@ -11,3 +11,11 @@ If you use TcESTIME, please cite:
 2. Belli, F., Novoa, T., Contreras-García, J., & Errea, I. (2021). Strong correlation between electronic bonding network and critical temperature in hydrogen-based superconductors. [Nature communications](https://www.nature.com/articles/s41467-021-25687-0), 2021, 12, 5381.
 
 We welcome questions, comments and any kind of feedback, which is needed for the improvement of TcESTIME. Please direct them to [trinidadantonia.novoa@ehu.eus](mailto:trinidadantonia.novoa@ehu.eus).
+
+## Dependencies
+
+TcESTIME is developed in Python 3 and requires the following packages to operate:
+- numpy
+- scipy
+- pandas
+- matplotlib
