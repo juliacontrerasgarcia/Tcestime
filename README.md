@@ -55,3 +55,5 @@ Possible fits for the estimation of Tc are:
 For the calculation of the critical points of the ELF using critic2, we recommend using the optimized parameters CPEPS 0.3 and NUCEPSH 0.6.
 
 The output of TcESTIME is a standard output message containing the found networking value, molecularity index, H_DOS, H_f, and the critical temperature.
+
+## TcESTIMEWeb
