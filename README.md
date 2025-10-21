@@ -57,7 +57,5 @@ For the calculation of the critical points of the ELF using critic2, we recommen
 The output of TcESTIME is a standard output message containing the found networking value, molecularity index, H_DOS, H_f, and the critical temperature.
 
 ## TcESTIMEWeb
-## TcESTIMEWeb
-
 An online version of TcESTIME is available at [**TcESTIMEWeb**](https://lct-webtools.sorbonne-universite.fr/tcestime/), hosted at Sorbonne Université.  
 It provides the same results and functionalities through a simple web interface.
