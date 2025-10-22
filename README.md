@@ -60,6 +60,10 @@ The output of TcESTIME is a standard output message containing the found network
 An online version of TcESTIME is available at [**TcESTIMEWeb**](https://lct-webtools.sorbonne-universite.fr/tcestime/), hosted at Sorbonne Université.  
 It provides the same results and functionalities through a simple web interface.
 
+## License
+
+Tcestime works under a GNU license, please see the License file.
+
 ## Contributors
 All contributors, in alphabetical order:
 1. Nicolás F. Barrera
