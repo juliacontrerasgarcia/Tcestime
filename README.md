@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/logo.png" alt="TcESTIME Logo" width="220"/>
+  <img src="docs/images/logo.svg" alt="TcESTIME Logo" width="220"/>
 </p>
 
 # TcESTIME
