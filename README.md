@@ -1,8 +1,5 @@
 # TcESTIME
 
-<p align="center">
-  <img src="https://drive.google.com/file/d/1U4SAxGQ5H9lhyamWu-kU4vBmQ8mE_OaS/view?usp=sharing" alt="TcESTIME Logo" width="220"/>
-</p>
 Python code to estimate the critical temperature of hydrogen-based superconductors through the determination of its networking value.
 
 TcESTIME is developed and maintained in the research group led by [Julia Contreras-García](https://www.lct.jussieu.fr/pagesperso/contrera/) at Sorbonne Université.
