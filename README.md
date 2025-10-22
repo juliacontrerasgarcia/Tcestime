@@ -67,6 +67,7 @@ Tcestime works under a GNU license, please see the License file.
 ## Contributors
 All contributors, in alphabetical order:
 1. Nicolás F. Barrera
-2. Julia Contreras-García
-3. Trinidad Novoa
-4. Ivon Maday
+2. Carlos Cárdenas 
+3. Julia Contreras-García
+4. Trinidad Novoa
+5. Ivon Maday
