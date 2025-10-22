@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/images/logo.png" alt="TcESTIME Logo" width="220"/>
+</p>
+
 # TcESTIME
 
 Python code to estimate the critical temperature of hydrogen-based superconductors through the determination of its networking value.
