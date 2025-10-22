@@ -18,6 +18,7 @@ TcESTIME is developed in Python 3 and requires the following packages to operate
 - scipy
 - pandas
 - matplotlib
+- onnxruntime
 
 ## How to run TcESTIME?
 Before running TcESTIME, make sure to set the PYTHONPATH to the folder containing the TcESTIME.py file. This can be done by
