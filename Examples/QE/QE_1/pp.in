@@ -1,0 +1,12 @@
+&INPUTPP
+ prefix = 'CaYH20'
+ outdir = './'
+ plot_num = 8
+ filplot = 'CaYH20.ELF.dat'
+/
+&PLOT
+ iflag = 3
+ output_format = 6
+ fileout = 'CaYH20.ELF.cube'
+/
+

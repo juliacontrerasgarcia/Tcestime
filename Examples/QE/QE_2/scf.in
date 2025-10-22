@@ -1,0 +1,62 @@
+&CONTROL
+ calculation  = 'scf',
+ prefix       = 'CaYH20',
+ pseudo_dir   = '/ccc/cont003/home/unisorbo/barreran/work/Pseudopotentials/pslibrary.1.0.0/pbe/PSEUDOPOTENTIALS/',
+ outdir       = './',
+/
+&SYSTEM    
+ ibrav        = 0
+ nat          = 20,
+ ntyp         = 3,
+ ecutwfc      = 100,
+ ecutrho      = 800,
+ smearing     = 'mp'
+ occupations  = 'smearing'
+ degauss      = 0.01
+/
+&ELECTRONS
+ conv_thr    = 1.0d-12
+ mixing_beta = 0.2
+/
+&IONS
+/
+&CELL
+/
+
+ATOMIC_SPECIES
+ Ca  40.078   Ca.pbe-spn-kjpaw_psl.1.0.0.UPF 
+ Y   88.905   Y.pbe-spn-kjpaw_psl.1.0.0.UPF 
+ H   1.007    H.pbe-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS (angstrom)
+2.963800    0.000000    0.000000
+0.000000    2.963800    0.000000
+0.000000    0.000000    4.186510
+
+ATOMIC_POSITIONS (angstrom)
+  Ca  2.963799    2.963799    4.186498
+  Y   1.481899    1.481899    2.093249
+  H   0.759918    1.481899    0.484797
+  H   2.203881    1.481899    0.484797
+  H   1.481899    0.759918    0.484797
+  H   1.481899    2.203881    0.484797
+  H   2.203881    1.481899    3.701702
+  H   0.759918    1.481899    3.701702
+  H   1.481899    0.759918    3.701702
+  H   1.481899    2.203881    3.701702
+  H   2.963799    1.481899    3.174622
+  H   1.481899    2.963799    3.174622
+  H   2.963799    1.481899    1.011877
+  H   1.481899    2.963799    1.011877
+  H   0.703310    2.963799    1.562401
+  H   2.260490    2.963799    1.562401
+  H   2.963799    0.703310    1.562401
+  H   2.963799    2.260490    1.562401
+  H   2.260490    2.963799    2.624097
+  H   0.703310    2.963799    2.624097
+  H   2.963799    0.703310    2.624097
+  H   2.963799    2.260490    2.624097
+
+K_POINTS AUTOMATIC
+  17 17 11 0 0 0
+

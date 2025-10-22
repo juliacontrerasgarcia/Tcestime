@@ -1,0 +1,55 @@
+
+     Program POST-PROC v.6.3 starts on 22Oct2025 at 15:40:54 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI & OpenMP), running on      10 processor cores
+     Number of MPI processes:                10
+     Threads/MPI process:                     1
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =      10
+
+     Reading data from directory:
+     ./CaYH20.save/
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation      = PBE ( 1  4  3  4 0 0)
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+               file Ca.pbe-spn-kjpaw_psl.1.0.0.UPF: wavefunction(s)  3S renormalized
+               file Y.pbe-spn-kjpaw_psl.1.0.0.UPF: wavefunction(s)  4S 4P renormalized
+               file H.pbe-kjpaw_psl.1.0.0.UPF: wavefunction(s)  1S renormalized
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         200      99     29                 9488     3357     537
+     Max         201     100     30                 9492     3360     540
+     Sum        2001     997    293                94895    33591    5383
+ 
+
+     Calling punch_plot, plot_num =   8
+     Message from routine do_elf:
+     elf + US not fully implemented
+     Writing data to file  CaYH20.ELF.dat
+     Reading data from file  CaYH20.ELF.dat
+
+     Writing data to be plotted to file CaYH20.ELF.cube
+     Plot Type: 3D                     Output format: Gaussian cube
+ 
+     POST-PROC    :     9.36s CPU        11.68s WALL
+
+ 
+   This run was terminated on:  15:41: 5  22Oct2025            
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=

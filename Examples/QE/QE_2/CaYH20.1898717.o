@@ -1,0 +1,35 @@
+########## ########## ########## ########## ########## ########## ########## ##########
+Execution Sum Up
+########## ########## ########## ########## ########## ########## ########## ##########
+Jobid     : 1898717
+Jobname   : CaYH20
+User      : barreran
+Account   : gen15069@hybrid
+Limits    : time = 30:00 , memory/job = 3750 Mo
+Date      : submit = 22/10/2025 18:18:55 , start = 22/10/2025 18:19:05 , end = 22/10/2025 18:49:05
+Execution : partition = hybrid , QoS = test , Comment = (null)
+Resources : ntasks = 64 , cpus/task = 1 , ncpus = 64 , nodes = 2
+   Nodes=irene7007 CPU_IDs=0-47 Mem=180000 GRES=
+   Nodes=irene7008 CPU_IDs=0-15 Mem=60000 GRES=
+ 
+Memory / step 
+--------------
+                          Resident Size (Mo)                     Virtual Size (Go)
+JobID            Max     (Node:Task)       AveTask    Max  (Node:Task)            AveTask
+-----------      ------------------------  -------    --------------------------  -------
+1898717.extern       0 (irene7007   :   0)       0      0.00 (irene7007   :   0)    0.00
+1898717.batch       39 (irene7007   :   0)       4      0.00 (irene7007   :   0)    0.00
+
+Accounting / step 
+------------------
+
+JobID           JobName                  Ntasks  Ncpus Nnodes  Layout       Elapsed               User         System     Eff  State
+------------    ------------             ------  ----- ------  -------      -------               -------      ------     ---  -----
+1898717         CaYH20                        -     64      2        -     00:02:47   (100%)            -            -      -  -
+1898717.batch   batch                         1     48      1  Unknown     00:02:47   (100%)     00:00:00     00:00:00      0  RUNNING
+1898717.extern  extern                        2     64      2  Unknown     00:02:47 (100.0%)     00:00:00     00:00:00      0  RUNNING
+1898717.0       pw.x                         64     64      2   BBlock     00:01:09  (41.3%)     01:04:19     00:03:30   92.1  COMPLETED
+1898717.1       pw.x                         64     64      2   BBlock     00:01:03  (37.7%)     01:00:21     00:03:05   94.4  COMPLETED
+1898717.2       pp.x                         16     64      2   BBlock     00:00:11   (6.5%)     00:01:54     00:00:07   17.1  COMPLETED
+1898717.3       projwfc.x                    16     64      2   BBlock     00:00:15   (8.9%)     00:02:52     00:00:06   18.5  COMPLETED
+########## ########## ########## ########## ########## ########## ########## ##########

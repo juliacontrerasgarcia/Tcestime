@@ -1,0 +1,31 @@
+Wrote: CaYH20_ok.ELF.cube
+########## ########## ########## ########## ########## ########## ########## ##########
+Execution Sum Up
+########## ########## ########## ########## ########## ########## ########## ##########
+Jobid     : 1899135
+Jobname   : CaYH20
+User      : barreran
+Account   : gen15069@rome
+Limits    : time = 30:00 , memory/job = 1775 Mo
+Date      : submit = 22/10/2025 18:30:53 , start = 22/10/2025 18:30:55 , end = 22/10/2025 19:00:55
+Execution : partition = rome , QoS = test@rome , Comment = (null)
+Resources : ntasks = 2 , cpus/task = 1 , ncpus = 2 , nodes = 1
+   Nodes=irene4615 CPU_IDs=250-253 Mem=3550 GRES=
+ 
+Memory / step 
+--------------
+                          Resident Size (Mo)                     Virtual Size (Go)
+JobID            Max     (Node:Task)       AveTask    Max  (Node:Task)            AveTask
+-----------      ------------------------  -------    --------------------------  -------
+1899135.extern       0 (irene4615   :   0)       0      0.00 (irene4615   :   0)    0.00
+1899135.batch      196 (irene4615   :   0)       4      0.00 (irene4615   :   0)    0.00
+
+Accounting / step 
+------------------
+
+JobID           JobName                  Ntasks  Ncpus Nnodes  Layout       Elapsed               User         System     Eff  State
+------------    ------------             ------  ----- ------  -------      -------               -------      ------     ---  -----
+1899135         CaYH20                        -      2      1        -     00:00:25   (100%)            -            -      -  -
+1899135.batch   batch                         1      2      1  Unknown     00:00:25   (100%)     00:00:00     00:00:00      0  RUNNING
+1899135.extern  extern                        1      2      1  Unknown     00:00:25 (100.0%)     00:00:00     00:00:00      0  RUNNING
+########## ########## ########## ########## ########## ########## ########## ##########

@@ -1,0 +1,9 @@
+SYSTEM = sys
+LWAVE  = .FALSE.
+PREC   = Accurate
+LELF   = .TRUE.
+ENCUT  = 700
+ISMEAR = 1;  SIGMA = 0.1
+SYMPREC = 1e-4
+NELM   = 400
+NPAR   = 4

@@ -1,0 +1,10 @@
+&projwfc
+    outdir = './',
+    prefix = 'CaYH20',
+    ngauss =1, degauss = 0.005,
+    DeltaE = 0.001
+    kresolveddos=.false.
+    filpdos='CaYH20_pdos.dat'
+    filproj='CaYH20proj.dat'
+/
+
