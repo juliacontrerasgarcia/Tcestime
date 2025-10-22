@@ -1,5 +1,4 @@
 # TcESTIME
-Tcestime works under a GNU license
 
 Python code to estimate the critical temperature of hydrogen-based superconductors through the determination of its networking value.
 
