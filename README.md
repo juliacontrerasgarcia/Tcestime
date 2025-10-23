@@ -25,6 +25,74 @@ TcESTIME is developed in Python 3 and requires the following packages to operate
 - scikit-learn==1.4.1 (other versions might fail for GBR method)
 - onnxruntime
 
+## Running TcESTIME
+
+Before running **TcESTIME**, make sure that Python can locate the main script by setting the `PYTHONPATH`:
+
+```bash
+export PYTHONPATH=/path/to/TcESTIME
+```
+
+### Basic Usage
+
+**TcESTIME** estimates the superconducting critical temperature (Tc) from topological descriptors obtained from the Electron Localization Function (ELF) and the Projected Density of States (PDOS).  
+The main input is the output file from **critic2**, which contains the topological analysis of the ELF field.
+
+Example:
+
+```bash
+python3 TcESTIME.py /path/to/system.critic.out
+```
+
+By default:
+- The fit model is **NN** (neural network).
+- The code assumes **Quantum ESPRESSO** outputs (`--code QE`).
+
+For **VASP** users, specify the code explicitly:
+
+```bash
+python3 TcESTIME.py system.critic.out --code VASP
+```
+
+Only the **NN** model is supported for VASP.
+
+---
+
+### Command-Line Options
+
+```
+--hdos HDOS           Manually specify hydrogen DOS at the Fermi level.
+--dpdos DPDOS         Directory containing PDOS files (*.pdos.*). Defaults to current directory.
+--efermi EFERMI       Fermi energy (in eV).
+--qeout FILE          QE output file to read the Fermi energy if not provided (default: nscf.out).
+--fit FIT             Model used to estimate Tc (leastsq, SR2, SR4, GBR, NN). Default is NN.
+--code CODE           Origin of data: QE (default) or VASP.
+--odir ODIR           Output directory (default: same as input).
+--critic2 PATH        Path to critic2 executable.
+--plot True/False     Plot ELF network (optional).
+```
+
+---
+
+### Available Models
+
+```
+'leastsq' : Linear least-squares correlation between Tc and phi_dos = phi * Hf * (HDOS)^(1/3).
+'SR2'     : Symbolic regression model (see https://doi.org/10.48550/arXiv.2403.07584).
+'SR4'     : Symbolic regression model (see https://doi.org/10.48550/arXiv.2403.07584).
+'GBR'     : Gradient Boosting Regression model (see https://doi.org/10.1039/D4SC04465G).
+'NN'      : Neural-network ensemble (default and only option for VASP).
+```
+
+---
+
+### Notes
+
+- If `--hdos` is not provided, TcESTIME computes it automatically from QE or VASP PDOS files.  
+- When using **critic2**, the recommended parameters are `CPEPS 0.3` and `NUCEPSH 0.6`.  
+- The output includes the **networking value (phi)**, **molecularity index (phi\*)**, **hydrogen fraction (Hf)**, **hydrogen DOS (HDOS)**, and the **predicted Tc**.
+
+
 ## How to run TcESTIME?
 Before running TcESTIME, make sure to set the PYTHONPATH to the folder containing the TcESTIME.py file. This can be done by
 
