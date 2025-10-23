@@ -43,7 +43,14 @@ parser.add_argument('fname', type=str, help='File containing the data (either .c
 parser.add_argument('--hdos', type=float, help='H_DOS value to be considered for T_c.')
 parser.add_argument('--dpdos', type=str, help='Directory where to find pdos files to get H_DOS (*.pdos_*). Working dir is default.')
 parser.add_argument('--efermi', type=float, help='Fermi energy')
-parser.add_argument('--fit', type=str, help="Fit to estimate Tc ('leastsq', 'SR2', 'SR4', 'GBR', or 'NN'). Default is 'leastsq'.")
+#parser.add_argument('--fit', type=str, help="Fit to estimate Tc ('leastsq', 'SR2', 'SR4', 'GBR', or 'NN'). Default is 'NN'.")
+parser.add_argument(
+    '--fit',
+    type=str,
+    default='NN',
+    help="Fit to estimate Tc ('leastsq', 'SR2', 'SR4', 'GBR', or 'NN'). Default is 'NN'. "
+         "Note: for --code VASP only 'NN' is supported."
+)
 parser.add_argument('--odir', type=str, help='Directory for output files.')
 parser.add_argument('--critic2', type=str, help='Path to critic executable.')
 parser.add_argument('--plot', type=bool, help='Plot network of critical points. Default is False.')
@@ -53,10 +60,9 @@ parser.add_argument('--qeout', type=str, default='nscf.out',help="QE output file
 args = parser.parse_args()
 code = args.code
 fit = args.fit
-if code.lower() == "vasp" and (fit is None or fit.lower() != "nn"):
-    from src import messages  # o solo "import messages" si el import es relativo al mismo nivel
+if code.lower() == "vasp" and args.fit is not None and fit.lower() != "nn":
+    from src import messages
     print(messages.error_vasp_fit(fit))
-    import sys
     sys.exit(1)
 data_file = args.fname
 h_dos = args.hdos
@@ -80,8 +86,8 @@ if getattr(sys, 'frozen', False):
 else:
     application_path = os.path.dirname(os.path.abspath(__file__))
 
-if fit is None:
-    fit = 'leastsq'
+#if fit is None:
+#    fit = 'NN'
 
 fn_out = data_file
 fn_common = os.path.splitext(fn_out)[0]
