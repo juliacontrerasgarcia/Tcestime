@@ -80,7 +80,7 @@ Only the **NN** model is supported for VASP.
 'leastsq' : Linear least-squares correlation between Tc and phi_dos = phi * Hf * (HDOS)^(1/3).
 'SR2'     : Symbolic regression model (see https://doi.org/10.48550/arXiv.2403.07584).
 'SR4'     : Symbolic regression model (see https://doi.org/10.48550/arXiv.2403.07584).
-'SR5'     : Symbolic regression model (see [https://onlinelibrary.wiley.com/doi/full/10.1002/andp.202500280](https://onlinelibrary.wiley.com/doi/full/10.1002/andp.202500280) & https://doi.org/10.48550/arXiv.2403.07584).
+'SR5'     : Symbolic regression model (see (https://onlinelibrary.wiley.com/doi/full/10.1002/andp.202500280) & https://doi.org/10.48550/arXiv.2403.07584).
 'GBR'     : Gradient Boosting Regression model (see https://doi.org/10.1039/D4SC04465G).
 'NN'      : Neural-network ensemble (default and only option for VASP).
 ```
