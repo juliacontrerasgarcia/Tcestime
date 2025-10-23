@@ -93,9 +93,37 @@ Only the **NN** model is supported for VASP.
 - When using **critic2**, the recommended parameters are `CPEPS 0.3` and `NUCEPSH 0.6`.  
 - The output includes the **networking value (phi)**, **molecularity index (phi\*)**, **hydrogen fraction (Hf)**, **hydrogen DOS (HDOS)**, and the **predicted Tc**.
 
+## Examples and User Manual
+
+A complete set of **example calculations** is provided in the `Examples/` directory of the repository.  
+These examples reproduce the workflows described in the TcESTIME User Manual and include both **Quantum ESPRESSO** and **VASP** cases:
+
+```
+Examples/
+│
+├── QE/
+│   ├── QE_1/   → Standard workflow (QE < 6.8)
+│   └── QE_2/   → ELF rescaling workflow (QE 6.8–7.5)
+│
+└── VASP/
+    └── VASP_1/ → Fully automated VASP example
+```
+
+Each example folder contains all necessary input and output files (`scf.in`, `nscf.in`, ELF and PDOS data, and `critic.out`) to reproduce the results presented in the manual.
+
+The **User Manual** (in PDF format) is located in:
+
+```
+Examples/User_Manual_TcESTIME.pdf
+```
+
+It provides detailed, step-by-step instructions for running TcESTIME with both Quantum ESPRESSO and VASP, along with recommended critic2 settings and expected outputs.
+
+
 ## TcESTIMEWeb
 An online version of TcESTIME is available at [**TcESTIMEWeb**](https://lct-webtools.sorbonne-universite.fr/tcestime/), hosted at Sorbonne Université.  
 It provides the same results and functionalities through a simple web interface.
+
 
 ## License
 
