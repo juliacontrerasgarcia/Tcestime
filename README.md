@@ -22,6 +22,7 @@ TcESTIME is developed in Python 3 and requires the following packages to operate
 - scipy
 - pandas
 - matplotlib
+- scikit-learn==1.4.1 (other versions might fail for GBR method)
 - onnxruntime
 
 ## How to run TcESTIME?
