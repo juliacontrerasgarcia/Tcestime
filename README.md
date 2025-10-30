@@ -135,4 +135,4 @@ All contributors, in alphabetical order:
 2. Carlos Cárdenas 
 3. Julia Contreras-García
 4. Trinidad Novoa
-5. Ivon Maday
+5. Yvon Maday
