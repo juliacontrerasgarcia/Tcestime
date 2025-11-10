@@ -108,8 +108,8 @@ elif code == "VASP":
     if h_dos is None:
             print("[INFO] H_DOS could not be computed.")
             print("Your system might be non-metallic. Please check your DOS/PDOS.")
-        else:
-            print_hdos(h_dos)
+    else:
+        print_hdos(h_dos)
 
 elif code == "QE":
     # Extract Fermi energy from QE output file (e.g., nscf.out)
