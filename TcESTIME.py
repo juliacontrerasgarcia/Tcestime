@@ -26,7 +26,7 @@ import sys
 import argparse
 
 # Add the src folder to PYTHONPATH
-sys.path.append('/path/to/TcESTIME/src')
+sys.path.append('/ccc/cont003/home/unisorbo/barreran/work/Codes/TcESTIME_v2/src')
 
 from src.netval import *
 from src.messages import *
@@ -97,10 +97,20 @@ if h_dos is not None:
     print_hdos(h_dos)
 elif e_fermi is not None:
     h_dos = get_hdos(pdos_dir or work_dir, e_fermi, code=code)
-    print_hdos(h_dos)
+    if h_dos is None:
+        print("[INFO] H_DOS could not be computed.")
+        print("Your system might be non-metallic or EF lies in a gap. Please check your DOS/PDOS.")
+    else:
+        print_hdos(h_dos)
+
 elif code == "VASP":
     h_dos = get_hdos(pdos_dir or work_dir, None, code=code)
-    print_hdos(h_dos)
+    if h_dos is None:
+            print("[INFO] H_DOS could not be computed.")
+            print("Your system might be non-metallic. Please check your DOS/PDOS.")
+        else:
+            print_hdos(h_dos)
+
 elif code == "QE":
     # Extract Fermi energy from QE output file (e.g., nscf.out)
     qe_output_file = args.qeout
@@ -113,7 +123,11 @@ elif code == "QE":
         e_fermi = float(fermi_lines[-1].split()[-2])  # penultimate token is the value
         print(f"Fermi energy automatically read from '{qe_output_file}': {e_fermi:.4f} eV")
         h_dos = get_hdos(pdos_dir or work_dir, e_fermi, code=code)
-        print_hdos(h_dos)
+        if h_dos is None:
+            print("[INFO] H_DOS could not be computed.")
+            print("Your system might be non-metallic. Please check your DOS/PDOS.")
+        else:
+            print_hdos(h_dos)
     except FileNotFoundError:
         raise FileNotFoundError(f"QE output file '{qe_output_file}' not found.")
 
@@ -122,7 +136,17 @@ net_val, h_frac, anti_phi = netval(fn_out, verbose=verbose, connect_core_nnas=co
 print_netval(net_val if net_val is not None else 0.0)
 print_hf(h_frac)
 
-if h_dos is not None and net_val is not None:
+# Verificar que todos los descriptores estén disponibles
+if None in (net_val, h_frac, h_dos, anti_phi):
+    print("[WARNING] One or more descriptors could not be computed (net_val, h_frac, h_dos, anti_phi). Writing 'NA' to tc.dat.")
+    with open(os.path.join(outdir, "tc.dat"), "w") as f:
+        f.write("NA\n")
+else:
+    # Todos los descriptores están presentes → calcular Tc normalmente
+    print_tc(net_val, h_frac, h_dos, molec=anti_phi, fit=fit, code=code)
+    write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos, molec=anti_phi, fit=fit, code=code)
+
+#if h_dos is not None and net_val is not None:
     #if code == "VASP":
         # Apply empirical correction to convert VASP descriptors to QE scale
     #    net_val = 0.8616 * net_val + 0.0273
@@ -132,7 +156,7 @@ if h_dos is not None and net_val is not None:
     #print_tc(net_val, h_frac, h_dos, molec=anti_phi, fit=fit)
     #write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos, molec=anti_phi, fit=fit)
 
-    print_tc(net_val, h_frac, h_dos, molec=anti_phi, fit=fit, code=code)
-    write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos, molec=anti_phi, fit=fit, code=code)
+ #   print_tc(net_val, h_frac, h_dos, molec=anti_phi, fit=fit, code=code)
+  #  write_tc(os.path.join(outdir, "tc.dat"), net_val, h_frac, h_dos, molec=anti_phi, fit=fit, code=code)
 
 print("Time: {:.2f} s".format(time.time() - time0))
