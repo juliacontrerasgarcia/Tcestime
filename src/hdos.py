@@ -53,7 +53,7 @@ def get_hdos(dir_pdos, e_fermi, code='QE', verbose=False):
 
         return hdos / totpdos
 
-        elif code == 'VASP':
+    elif code == 'VASP':
         thr = 1e-4
         at_DOS_F = []
         total_DOS_F = None  # ← para detectar si nunca se encontró EF
@@ -85,7 +85,7 @@ def get_hdos(dir_pdos, e_fermi, code='QE', verbose=False):
         # Si no hubo ninguna fila a EF dentro del umbral
         if total_DOS_F is None or len(at_DOS_F) == 0:
             print("[ERROR] No DOS entries found at the Fermi energy within the threshold.")
-            print("Your DOS energy step might be too coarse or EFermi lies between grid points.")
+            print("Your DOS energy step might be too coarse or EF lies between grid points.")
             print("Please recompute DOS/PDOS with a finer energy grid or use a nearest-energy approach.")
             return None
 
@@ -122,7 +122,6 @@ def get_hdos(dir_pdos, e_fermi, code='QE', verbose=False):
             print("H_DOS:", H_DOS)
 
         return H_DOS
-
 
     else:
         raise ValueError("Unknown code. Use 'QE' or 'VASP'.")
