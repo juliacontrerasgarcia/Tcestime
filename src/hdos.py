@@ -2,7 +2,7 @@
 
 import os
 import sys
-from numpy import absolute
+import numpy as np
 
 
 def get_hdos(dir_pdos, e_fermi, verbose=False):
@@ -14,25 +14,57 @@ def get_hdos(dir_pdos, e_fermi, verbose=False):
     else:
         raise ValueError("{}: directory does not exist.".format(dir_pdos))
 
+    interpolate = False # flag is True if exact efermi is not on file (next line returns empty file)
     os.system("grep ' {:.3f}' {}/*.pdos_* > pdos_fermi.out".format(e_fermi, dir_pdos))
     hdos = 0
     nh = 0
     atmdos = 0
     with open("pdos_fermi.out", "r") as f:
-        for i, line in enumerate(f):
-            if i==0:
-                e_fermi_1 = float(line.split()[1])
-                assert absolute(e_fermi-e_fermi_1)<1e-3
-            if "wfc" in line: #filter line with tot dos
-                at_type = line.split("(")[1].split(")_wfc")[0] # get atomic type
-                if at_type=="H":
-                    hdos += float(line.split()[2])
+
+        lines = f.readlines()
+        if len(lines) == 0:
+            # In case the exact efermi is not in the file, we will interpolate 
+            print("[ERROR] No PDOS entries found exactly at the Fermi energy.")
+            print("Your PDOS energy step might be too coarse or EFermi lies between grid points.")
+            print("We provide an interpolated approximate value, but you can choose to recompute PDOS with a finer energy grid.")
+            interpolate = True
+    
+
+    if interpolate:
+        ldir = os.listdir()
+        for d in ldir:
+            if "pdos_tot" in d:
+                data = np.loadtxt(d, skiprows=1)
+                energies = data[:,0]
+                pdos = data[:,2]
+                totpdos = np.interp(e_fermi, energies, pdos) # this is where we interpolate  
+            elif "wfc" in d:
+                at_type = d.split("(")[1].split(")_wfc")[0] # get atomic type
+                if at_type == "H":
                     nh += 1
+                    data = np.loadtxt(d, skiprows=1)
+                    hdos += np.interp(e_fermi, data[:,0], data[:,2])
+                else: 
+                    data = np.loadtxt(d, skiprows=1)
+                    atmdos += np.interp(e_fermi, data[:,0], data[:,2])
+        
+
+    else:
+        with open("pdos_fermi.out", "r") as f:
+            for i, line in enumerate(f):
+                if i==0:
+                    e_fermi_1 = float(line.split()[1])
+                    assert np.absolute(e_fermi-e_fermi_1)<1e-3
+                if "wfc" in line: #filter line with tot dos
+                    at_type = line.split("(")[1].split(")_wfc")[0] # get atomic type
+                    if at_type=="H":
+                        hdos += float(line.split()[2])
+                        nh += 1
+                    else:
+                        atmdos += float(line.split()[2])
                 else:
-                    atmdos += float(line.split()[2])
-            else:
-                totpdos = float(line.split()[3])
-        n_orb = i   # number of orbitals is number of lines minus one
+                    totpdos = float(line.split()[3])
+            n_orb = i   # number of orbitals is number of lines minus one
 
     if verbose:
         print("Coputing H_DOS ...")
@@ -46,5 +78,4 @@ def get_hdos(dir_pdos, e_fermi, verbose=False):
         print("")
     
     return hdos/totpdos
-
 
