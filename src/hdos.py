@@ -76,6 +76,12 @@ def get_hdos(dir_pdos, e_fermi, verbose=False):
         print(" Total contribution of H   :  {:.5f}".format(hdos))
         print(" H_DOS                     :  {:.5f}".format(hdos/(totpdos)))
         print("")
-    
+   
+    # --- Prevent division by zero and give user feedback ---
+    if totpdos == 0 or abs(totpdos) < 1e-10:
+        print("Total DOS at the Fermi energy is zero. No H_DOS value will be provided.")
+        return None
+
+
     return hdos/totpdos
 
