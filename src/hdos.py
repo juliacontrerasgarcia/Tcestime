@@ -38,7 +38,7 @@ def get_hdos(dir_pdos, e_fermi, verbose=False):
                 energies = data[:,0]
                 pdos = data[:,2]
                 totpdos = np.interp(e_fermi, energies, pdos) # this is where we interpolate  
-            elif "wfc" in d:
+            elif "pdos_atm#" in d:
                 at_type = d.split("(")[1].split(")_wfc")[0] # get atomic type
                 if at_type == "H":
                     nh += 1
