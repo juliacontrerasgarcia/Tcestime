@@ -31,8 +31,9 @@ def get_hdos(dir_pdos, e_fermi, verbose=False):
     
 
     if interpolate:
-        ldir = os.listdir()
+        ldir = os.listdir(dir_pdos)
         for d in ldir:
+            d = os.path.join(dir_pdos, d)
             if "pdos_tot" in d:
                 data = np.loadtxt(d, skiprows=1)
                 energies = data[:,0]
