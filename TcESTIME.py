@@ -26,7 +26,7 @@ import sys
 import argparse
 
 # Add the src folder to PYTHONPATH
-sys.path.append('/ccc/cont003/home/unisorbo/barreran/work/Codes/TcESTIME_v2/src')
+sys.path.append('/path/to/src')
 
 from src.netval import *
 from src.messages import *
