@@ -89,8 +89,8 @@ def get_hdos(dir_pdos, e_fermi, verbose=False):
             try:
                 data = np.loadtxt(filepath, skiprows=1)
                 energies = data[:, 0]
-                # Use column 2 for DOS if available, otherwise column 1
-                pdos = data[:, 2] if data.shape[1] > 2 else data[:, 1]
+                # Use column 2 for PDOS if there is only one orbital, otherwise sum
+                pdos = data[:, 2] if data.shape[1] == 2 else np.sum(data[:, 2:], axis=1)
                 if "tot" in filename or "pdos_tot" in filename:
                     totpdos = np.interp(e_fermi, energies, pdos)  # Interpolate total DOS
                 elif "wfc" in filename:
